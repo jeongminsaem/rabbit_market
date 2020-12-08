@@ -8,23 +8,20 @@
 </head>
 <body>
 
-<div class="card border-primary mb-3" style="border: 3px solid #D8D8D8; margin: 0 auto; padding: 200px; ">
+<div class="card border-primary mb-3" style="border: 3px solid #D8D8D8; margin: 0 auto; padding: 140px; ">
 	<div  style="width: 310px; margin: 0 auto; ">
-	 <input class="form-control" type="text" placeholder="아이디" id='userid' style="width: 300px; margin-bottom: 5px;">
-	 <input class="form-control form-control" type="password" placeholder="비밀번호" id='userpwd' style="width: 300px; margin-bottom: 20px;" 
-	        onkeypress="if( event.keyCode==13 ){ go_login() }" >	
-	 <a class="btn btn-primary " style="width: 300px; font-size: 1em; margin-bottom: 5px; " onclick="go_login()">로그인</a>&nbsp;&nbsp;
-	 <a class="btn btn-primary" style="width: 300px; font-size: 1em; "  href="member">회원가입</a>
+		 <input class="form-control" type="text" placeholder="아이디" id='userid' style="width: 300px; margin-bottom: 5px;">
+		 <input class="form-control form-control" type="password" placeholder="비밀번호" id='userpwd' style="width: 300px; margin-bottom: 20px;" 
+		        onkeypress="if( event.keyCode==13 ){ go_login() }" >	
+		 <a class="btn btn-primary " style="width: 300px; font-size: 1em; margin-bottom: 5px; " onclick="go_login()">로그인</a>&nbsp;&nbsp;
+		 <a class="btn btn-primary" style="width: 300px; font-size: 1em; margin-bottom: 5px; "  href="member">회원가입</a>
+		 <div id="googleLoginBtn" style="cursor: pointer; ">
+			<img id="googleLoginImg" src="img/sns_login_google.png" style="width: 300px; height: 45px;">
+		 </div>		 
 	</div>	
 </div>
 
-<!-- <div class="card border-secondary mb-3" style="max-width: 20rem; user-select: auto;">
-  <div class="card-header" style="user-select: auto;">Header</div>
-  <div class="card-body" style="user-select: auto;">
-    <h4 class="card-title" style="user-select: auto;">Secondary card title</h4>
-    <p class="card-text" style="user-select: auto;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div> -->
+
 </body>
 
 
@@ -56,6 +53,30 @@ function go_login(){
 		} 
 	});
 }
+
+
+/* 구글 로그인  */
+	const onClickGoogleLogin = (e) => {
+	
+ 		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?"+
+ 				"client_id=87280402706-a50jub75cop67urg603kheqr7tpe0hhg.apps.googleusercontent.com&"+ 				
+ 				"redirect_uri=http://localhost:80/iot/auth"+
+ 				"&response_type=code&&scope=email%20profile%20openid&access_type=offline")
+ 	};
+	
+	const googleLoginBtn = document.getElementById("googleLoginBtn");
+	
+	googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </html>

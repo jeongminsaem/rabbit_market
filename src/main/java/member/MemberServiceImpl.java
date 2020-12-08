@@ -39,4 +39,10 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
+	@Override
+	public MemberVO sns_login(String access_token) {
+		// TODO Auto-generated method stub
+		return dao.sns_login(access_token);
+	}
+
 }

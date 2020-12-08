@@ -7,7 +7,7 @@ public class BoardCommentVO {
 	private String writedate;
 	public int getId() {
 		return id;
-	}
+	} 
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -18,7 +18,7 @@ public class BoardCommentVO {
 		this.pid = pid;
 	}
 	public String getUserid() {
-		return userid;
+		return userid; 
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;

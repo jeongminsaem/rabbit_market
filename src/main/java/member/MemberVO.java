@@ -1,8 +1,11 @@
 package member;
 
+import lombok.Data;
+
+@Data
 public class MemberVO {
 	
-	private String userid, userpwd, name, gender, email, phone, birth, post, address, admin;
+	private String userid, userpwd, name, email, birth, post, address, admin, id_token;
 
 	public String getUserid() {
 		return userid;
@@ -28,13 +31,6 @@ public class MemberVO {
 		this.name = name;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 
 	public String getEmail() {
 		return email;
@@ -44,13 +40,6 @@ public class MemberVO {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone.replace(",", "-");
-	}
 
 	public String getBirth() {
 		return birth;

@@ -8,39 +8,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-textarea:focus {
-    outline: none;
-}
 
- /*  *{margin:0;padding:0;} */
-  ul,li{list-style:none;}
-  #slide{height:100%;  width: 100%; position:relative; overflow:hidden;}
-  #slide ul{width:400%; height:800px; transition:1s;}
-  #slide ul:after{content:"";display:block;clear:both;}
-  #slide li{float:left;width:25%;height:100%;}
-  #slide li:nth-child(1){background:#FFFFFF;}
-  #slide li:nth-child(2){background:#FFFFFF;}
-  #slide li:nth-child(3){background:#FFFFFF;}
-  #slide li:nth-child(4){background:#FFFFFF;} 
-  #slide input{display:none;}
-  #slide label{display:inline-block;vertical-align:middle;width:20px;height:20px;border:2px solid #666;
-  background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
-  #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
-  #pos1:checked~ul{margin-left:0%;}
-  #pos2:checked~ul{margin-left:-100%;}
-  #pos3:checked~ul{margin-left:-200%;}
-  #pos4:checked~ul{margin-left:-300%;}
-  #pos1:checked~.pos>label:nth-child(1){background:#666;}
-  #pos2:checked~.pos>label:nth-child(2){background:#666;}
-  #pos3:checked~.pos>label:nth-child(3){background:#666;}
-  #pos4:checked~.pos>label:nth-child(4){background:#666;}
- 
-
-</style>
-
-
-  
+   <style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 700px;
+        height: 500px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 3500px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 210px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 210px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
 </head>
 <body>
 <!-- 날짜 처리  -->
@@ -51,55 +55,46 @@ textarea:focus {
 <fmt:formatDate var="writedate" value="${b_date}" pattern="yyyy-MM-dd"/> <!-- 데이트 형식 -->
 <fmt:formatDate var="todaywrite" value="${b_date}" pattern="HH:mm" />	
  
-  
 
-<table class="table" style="width: 100%; ">
+
+<table class="table" style="width: 100%; "> 
+
   <thead style="text-align: center; ">  
-    <tr class="table-light" style="height: 100%;">
+    <tr class="table-primary" style="height: 100%;">
       <th scope="col" style="width: 70%;  font-size:1em; ">${vo.title}</th>
       <th scope="col" style="width: 10%;">${vo.name}</th>  
       <th scope="col" style="width: 10%;">${writedate eq today? todaywrite : writedate}</th>
       <th scope="col" style="width: 10%;">${vo.readcnt}</th>
     </tr>
   </thead>
- 	 
+	
+</table>  	 
   <!-- 내용  -->
-<tbody>	
-	<div class="table-default" style="user-select: auto; ">
+	
+	<div class="slide">
+	<c:if test="${fn:length(file_atta) > 1}"><i class="fas fa-chevron-left"  style="font-size:70px; opacity: 0.3" id="back"></i></c:if>
+      <ul>
+        <c:forEach var="file" items="${file_atta}" begin="0" end="${fn:length(file_atta)}" step="1" varStatus="status">
+        <li><img src="resources/${file.filepath}" alt="" width="700" height="500"></li>
+        </c:forEach>
+      </ul>
+    <c:if test="${fn:length(file_atta) > 1}"><i class="fas fa-chevron-right" style="font-size:70px; opacity: 0.3" id="next"></i></c:if>
+    </div> 
+
+ <div class="table-default" style="user-select: auto; padding: 30px; ">
       <td style="user-select: auto; padding:40px 10px; font-size:1em; height: 300px;" colspan="4">${fn: replace(vo.content, crlf, '<br>')}</td>      
-    </div>
-  
- <!-- 슬라이드 이미지  -->
-	<div id="slide" style="margin: 0 auto; text-align: center;">
-		<c:forEach var="file" items="${file_atta}" begin="0" end="${fn:length(file_atta)}" step="1" varStatus="status">
-			<input type="radio" name="pos" id="pos${begin=begin+1}" ${ begin eq 1 ? 'checked':'' }>
-		</c:forEach>
-		<c:set var="begin" value="0" />		<!--begin값 초기화  -->
-			<p class="pos">
-				<c:forEach var="file" items="${file_atta}" begin="0" end="${fn:length(file_atta)}" step="1" varStatus="status">
-					<label for="pos${begin=begin+1}"></label>
-				</c:forEach>
-			</p>
-		<ul>
-		<c:forEach var="file" items="${file_atta}" begin="0" end="${fn:length(file_atta)}" step="1" varStatus="status">
-		<li><img src="resources/${file.filepath}"style="height: 100%" /></li>
-		</c:forEach>
-				</ul>
-			</div>
-  </tbody> 
-</table>
+ </div>
  
- 
- <form action="list.mar" method="post">
+  <form action="list.mar" method="post">
 	<input type="hidden" name="id" value="${vo.id}"/>
 	<input type="hidden" name="curPage" value="${page.curPage}"/>
 	<input type="hidden" name="search" value="${page.search}"/>
 	<input type="hidden" name="keyword" value="${page.keyword}"/>
 	<input type="hidden" name="pagelist" value="${page.pageList}"/>
 	<input type="hidden" name="viewType" value="${page.viewType}"/>
+</form>  
 
-</form>
- 
+	
 <div style="padding: 10px;">
 	<a class="btn btn-info" onclick='$("form").submit()'>목록</a>
 	<c:if test="${login_info.userid ne null}">
@@ -129,7 +124,7 @@ textarea:focus {
 <!-- 댓글부분  -->
 <div id="comment_regist" style="border: 1px solid #D8D8D8; padding:30px 0px 50px 12px;">
 	<div>		
-		<textarea id="comment" style="width:99%; height: 150px; resize: none; border: 1px solid #D8D8D8;"></textarea>	
+		<textarea id="comment" style="width:99%; height: 150px; resize: none; border:1px solid #D8D8D8;"></textarea>	
 		<span style="float:right;">
 		<a class="btn btn-secondary" id="commentBtn" style="margin-right: 14px;" onclick='comment_regist()'>등록</a>
 		</span>	
@@ -139,7 +134,47 @@ textarea:focus {
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+    var imgs;
+    var img_count;
+    var img_position = 1;
 
+    imgs = $(".slide ul");
+    img_count = imgs.children().length;
+
+    //버튼을 클릭했을 때 함수 실행
+    $('#back').click(function () {
+      back();
+    });
+    $('#next').click(function () {
+      next();
+    });
+
+    function back() {
+      if(1<img_position){
+        imgs.animate({
+          left:'+=700px'
+        });
+        img_position--;
+      }
+    }
+    function next() {
+      if(img_count>img_position){
+        imgs.animate({
+          left:'-=700px'
+        });
+        img_position++;
+      }
+    }
+
+
+    //이미지 끝까지 가면 버튼 사라지기
+
+
+    //첫 이미지로 돌아오기
+
+
+  });
 
 
 

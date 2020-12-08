@@ -39,4 +39,10 @@ public class MemberDAO implements MemberService{
 		return false;
 	}
 
+	@Override
+	public MemberVO sns_login(String access_token) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("member.mapper.sns_login",access_token);
+	}
+
 }

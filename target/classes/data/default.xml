@@ -12,7 +12,9 @@
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 	</bean>
+
 	
+
 	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dbcp"></property>
 		<property name="mapperLocations" value="classpath:sqlmap/*-mapper.xml"></property>

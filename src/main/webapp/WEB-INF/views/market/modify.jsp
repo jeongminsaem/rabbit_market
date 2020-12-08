@@ -10,17 +10,15 @@
 
 <form method="post" action="update.mar" enctype="multipart/form-data">
 	<table>	
-		<input type="hidden" id="${login_info.name}"  name='userid'/>		
-		<input type="hidden" name="id" value='${vo.id}'/>
-		<input type="hidden" name="attach" />
+	
 		
 		<div class="form-group" style="user-select: auto; ">
 			<select class="custom-select need" name="category" style="user-select: auto; width:10%; float: left; margin-right: 10px;">
-				<option value="clothes" ${vo.category eq 'clothes' ? 'selected' : ''}>의류/잡화</option>
+ 				<option value="clothes" ${vo.category eq 'clothes' ? 'selected' : ''}>의류/잡화</option>
 				<option value="machine" ${vo.category eq 'machine' ? 'selected' : ''}>디지털/가전</option>
 				<option value="books" ${vo.category eq 'books' ? 'selected' : ''}>도서</option>
-				<option value="plants" ${vo.category eq 'plants' ? 'selected' : ''}>식물</option> 
-			</select>
+				<option value="plants" ${vo.category eq 'plants' ? 'selected' : ''}>식물</option>  
+				
 		  <input type="text" class="form-control need" placeholder="제목을 입력하세요" id="inputDefault" value="${vo.title}"
 		  style="user-select: auto; width: 80%; float: left; margin-bottom: 10px;" name='title' title='제목'>
 		</div>
@@ -53,7 +51,9 @@
 		      <label class="custom-control-label " for="customCheck1" style="user-select: auto; margin-left: 40px; ">구매자와 상의하기</label>
 	    	</div>
 		</div>
-		
+		<input type="hidden" id="${login_info.name}"  name='userid'/>		
+		<input type="hidden" name="id" value='${vo.id}'/>
+		<input type="hidden" name="attach" />
 		
 	</table>
 </form>

@@ -6,80 +6,62 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table td { text-align:left; }
-.valid, .invalid { font-size:13px; font-weight:bold; }
-.valid { color:green }
-.invalid { color:red }
-input[name=address] { width:calc(100% - 14px); }
-.ui-datepicker select {vertical-align: middle; height: 28px;}
-.ui-datepicker-month {padding-bottom:3px}
+	table td { text-align:left; padding: 20px}
+	.valid, .invalid { font-size:13px; font-weight:bold; }
+	.valid { color:green }
+	.invalid { color:red }
+	table th {height: 14px;}
+	/* input[name=address] { width:calc(100% - 14px); } */
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 
-<h3>회원가입</h3>
-
-<p class="w-pct60 right" style="margin:0 auto; font-size:13px; padding-bottom:5px ">* 는 필수입력항목 입니다</p>
-<form action="join" method="post">
-<table class="w-pct60">
-<tr><th class="w-px160">성명</th>
-	<td><input type="text" name="name"/></td>
-</tr>
-<tr><th>* 아이디</th>
-	<td><input type="text" name="userid" class="chk" />
-		<a class="btn-fill-s" id="btn_id">중복확인</a><br>
-		<div class="valid">아이디를 입력하세요(영문소문자, 숫자만 입력 가능)</div>
-	</td>
-</tr>
-<tr><th>* 비밀번호</th>
-	<td><input type="password" name="userpwd" class="chk" /><br>
-		<div class="valid">비밀번호를 입력하세요(영문 대/소문자, 숫자를 모두 포함)</div>
-	</td>
-</tr>
-<tr><th>* 비밀번호확인</th>
-	<td><input type="password" name="userpwd_ck" class="chk" /><br>
-		<div class="valid">비밀번호를 다시 입력하세요</div>
-	</td>
-</tr>
-<tr><th>* 성별</th>
-	<td><label><input type="radio" name="gender" value="남" checked/>남 </label>
-		<label><input type="radio" name="gender" value="여" />여 </label>
-	</td>
-</tr>
-<tr><th>* 이메일</th>
-	<td><input type="text" name="email" class="chk" /><br>
-		<div class="valid">이메일을 입력하세요</div>
-	</td>
-</tr>
-<tr><th>생년월일</th>
-	<td><input type="text" name="birth" readonly />
-		<span style="position: relative; right: 25px; color: red; display:none;" id="delete"><i class="font-img fas fa-times"></i></span>
-	</td>
-</tr>
-<tr><th>전화번호</th>
-	<td><input type="text" name="phone" class="w-px40" maxlength="3"/>
-		- <input type="text" name="phone" class="w-px40" maxlength="4"/>
-		- <input type="text" name="phone" class="w-px40" maxlength="4"/>
-	</td>
-</tr>
-<tr><th>주소</th>
-	<td><a class="btn-fill-s" onclick="daum_post()">우편번호찾기</a>
-		<input type="text" name="post" class="w-px60" readonly /><br>
-		<input type="text" name="address" readonly />
-		<input type="text" name="address" />
-	</td>
-</tr>
-</table>
+<div class="card border-primary mb-3" style="border: 3px solid #D8D8D8; padding: 100px;">
+	
+<p style="font-size:13px; padding-bottom:5px ">* 는 필수입력항목 입니다</p>
+<form action="join" method="post" style="padding: 20px;">
+	<table>
+		<tr><th>이름</th>
+			<td><input class="form-control" type="text" name="name"/></td>
+		</tr>
+		<tr><th style="padding-bottom: 50px;">* 아이디</th>
+			<td><input class="form-control"  style="float:left;" type="text" name="userid" class="chk" />			
+				<div class="valid">아이디를 입력하세요(영문소문자, 숫자만 입력 가능)</div>
+			<a class="btn btn-primary"  id="btn_id">중복확인</a>
+			</td>
+		</tr>
+		<tr><th style="padding-bottom: 30px;">* 비밀번호</th>
+			<td><input class="form-control" type="password" name="userpwd" class="chk" />
+				<div class="valid">비밀번호를 입력하세요(영문 대/소문자, 숫자를 모두 포함)</div>
+			</td>
+		</tr>
+		<tr><th style="padding-bottom: 30px;">* 비밀번호확인</th>
+			<td><input class="form-control" type="password" name="userpwd_ck" class="chk" />
+				<div class="valid">비밀번호를 다시 입력하세요</div>
+			</td>
+		</tr>
+		<tr><th style="padding-bottom: 30px;"> * 이메일</th>
+			<td><input class="form-control" type="text" name="email" class="chk" />
+				<div class="valid">이메일을 입력하세요</div>
+			</td>
+		</tr>
+		<tr><th style="padding-bottom: 130px;">주소</th>
+			<td><a class="btn btn-primary" onclick="daum_post()">우편번호찾기</a>
+				<input class="form-control" type="text" name="post" class="w-px60" readonly />
+				<input class="form-control" type="text" name="address" readonly />
+				<input class="form-control" type="text" name="address" />
+			</td>
+		</tr>
+	</table>
 </form>
-
-<div class = "btnSet">
-		<a class ="btn-fill" onclick="go_join()">회원가입</a>
-		<a class ="btn-empty" onclick="history.go(-1)">취소</a>
+	
+	<div style="margin: 0 auto;">
+			<a class ="btn btn-info" onclick="go_join()">회원가입</a>
+			<a class ="btn btn-info" onclick="history.go(-1)">취소</a>
+	</div>
 
 </div>
-
-
 
 
 <script type="text/javascript" src="js/join_check.js"></script>
@@ -208,37 +190,7 @@ input[name=address] { width:calc(100% - 14px); }
 		}).open();
 	}
 
-	/* 생년월일 */
-
-	$(function() {
-		var today = new Date();
-		var endDay = new Date(today.getFullYear() - 13, today.getMonth(), today
-				.getDate() - 1); /* 만13세까지 */
-
-		$('[name=birth]').datepicker(
-				{
-					showMonthAfterYear : true,
-					dateFormat : 'yy-mm-dd',
-					changeYear : true,
-					changeMonth : true,
-					dayNamedMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					maxDate : endDay,
-					yearRange : '1950:' + endDay.toJSON().substr(0, 4) /* 년도 선택시 보여지는 범위  */
-				});
-	});
-
-	$('[name=birth]').change(function() {
-		$('#delete').css('display', 'inline');
-
-	});
-
-	$('#delete').click(function() {
-		$('[name=birth]').val('');
-		$('#delete').css('display', 'none');
-
-	});
+	
 </script>
 
 </body>

@@ -23,9 +23,9 @@ ul {list-style: none; padding:0;}
 
 <!-- SEARCH  -->					
 	<div style="padding: 0px 125px 0px 350px;">		
-  		<input class="form-control form-control" type="text" placeholder="SEARCH .. " name="search" value="${page.search}"
-  		id="inputLarge" style="user-select: auto; width:400px; height: 40px; float: left;" >&nbsp;
-  		<a class="btn btn-warning" style="height: 40px; padding: 0 10px; font-size: 1.3em; " onclick='$("form").submit()'>&nbsp;검색&nbsp;</a>	
+  		<input class="form-control form-control-lg" type="text" placeholder="SEARCH" name="search" value="${page.search}"
+  		id="inputLarge" style="user-select: auto; width:400px; float: left;" >&nbsp;
+  		<a class="btn btn-warning" style=" font-size: 1.3em; " onclick='$("form").submit()'>&nbsp;검색&nbsp;</a>	
   	</div>
 	
 	<div style="float:left; clear:both; margin: 0 auto; padding:  10px 125px 50px 400px; ">	

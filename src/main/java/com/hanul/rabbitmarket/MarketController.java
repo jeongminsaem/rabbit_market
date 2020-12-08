@@ -262,27 +262,32 @@ public class MarketController {
 		//방명록 수정화면 요청
 		@RequestMapping("/modify.mar")
 		public String modify(int id, Model model) {
-			//해당글의 정보를 DB에서 조회해와 수정화면에 출력한다
-			model.addAttribute("vo",service.market_detail(id));
-			//System.out.println(service.market_detail(id).getDiscuss());
+			
+			
+			List<MarketVO> list = service.market_detail(id);	
+			model.addAttribute("vo",list.get(0));
+			
+			System.out.println();
 			return "market/modify";
 		}
 		
 		
-		//방명록 수정저장처리 요청
+		//마켓 수정저장처리 요청
 		@RequestMapping("/update.mar")
-		public String update(MarketVO vo, MultipartFile file, String attach, HttpSession session, 
+		public String update(MarketVO vo, MultipartHttpServletRequest file, String attach, HttpSession session, 
 								RedirectAttributes redirect, Model model) {
-			//DB에서 원래 방명록 글의 정보를 조회해온다 
-			List<MarketVO> market = service.market_detail(vo.getId());
-		
-//			
-//			
+			
+			
+			List<MarketVO> list = service.market_detail(vo.getId());	
+			model.addAttribute("vo",list.get(0));
+			
+			
+			
 //			String uuid = session.getServletContext().getRealPath("resources") + market.getFilepath();
 //		
 //			//첨부파일이 있는 경우 : 원래 없었는데 변경하면서 첨부/ 원래 있었는데 변경하면서 바꿔 첨부 
 //			if ( !file.isEmpty() ) {
-//			vo.setFilename(file.getOriginalFilename());
+//				vo.setFilename(file.getOriginalFilename());
 //				vo.setFilepath(common.upload("market", file, session));	
 //			//원래 있었는데 변경하면서 바꿔 첨부 하는 경우 원래 파일을 삭제 
 //			if ( market.getFilename() !=null ) {
@@ -312,7 +317,7 @@ public class MarketController {
 			service.market_update(vo);
 			redirect.addFlashAttribute("id", vo.getId());  //detail부분에서 @ModelAttribute("id")로 받는다
 			return "redirect:detail.mar";
-			
+			 
 			/*
 			 * return "redirect:detail.mar?id="+vo.getId();
 			 * model.addAttribute("url","detail.mar"); model.addAttribute("id",vo.getId());
