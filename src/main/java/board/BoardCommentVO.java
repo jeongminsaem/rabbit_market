@@ -1,6 +1,6 @@
 package board;
 
-public class BoardCommentVO {
+public class BoardCommentVO {  
 	
 	private int id, pid; 
 	private String userid, name, content;

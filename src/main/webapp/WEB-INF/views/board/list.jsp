@@ -43,8 +43,8 @@
 			<table style="user-select: auto; text-align: center; width:100%;">
 		<c:if test="${page.viewType eq 'list'}">
 				<thead style="user-select: auto;">
-					<tr class="table table-info" style="user-select: auto;">
-						<th scope="col" style="user-select: auto; width: 60px">#</th>
+					<tr class="table table-primary" style="user-select: auto;">
+						<th scope="col" style="user-select: auto; width: 60px">NO</th>
 						<th scope="col" style="user-select: auto; width: 300px">TITLE</th>
 						<th scope="col" style="user-select: auto; width: 100px">WRITER</th>
 						<th scope="col" style="user-select: auto; width: 100px">CREATED</th>

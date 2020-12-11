@@ -74,7 +74,7 @@ public class MarketServiceImpl implements MarketService{
 	}
 
 	@Override
-	public List<MarketVO> market_detail(int id) {
+	public MarketVO market_detail(int id) {
 		// TODO Auto-generated method stub
 		return dao.market_detail(id);
 	}
@@ -133,6 +133,24 @@ public class MarketServiceImpl implements MarketService{
 	public int del_noti(int id) {
 		// TODO Auto-generated method stub
 		return dao.del_noti(id);
+	}
+
+	@Override
+	public List<FileVO> detail_file(int id) {
+		// TODO Auto-generated method stub
+		return dao.detail_file(id);
+	}
+
+	@Override
+	public int delete_file(int id) {
+		// TODO Auto-generated method stub
+		return dao.delete_file(id);
+	}
+
+	@Override
+	public int update_file(FileVO vo) {
+		// TODO Auto-generated method stub
+		return dao.update_file(vo);
 	}
 
 	

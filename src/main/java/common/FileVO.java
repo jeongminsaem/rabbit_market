@@ -31,10 +31,12 @@ public class FileVO {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
-	 
-	 
-	 
-	 
+
+	@Override
+
+	public String toString() {
+		return "[filepath=" + filepath + ", filename=" + filename + "]";
+   }
 	 
 	 
 		

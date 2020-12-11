@@ -9,7 +9,7 @@
 
 <body>
 
-<form method="post" action="insert.mar" enctype="multipart/form-data"">
+<form method="post" action="insert.mar" enctype="multipart/form-data">
 	
 		<input type="hidden" id="${login_info.name}"  name='userid'/>
 		<input type="hidden" id="ing"  name='progress'/>		

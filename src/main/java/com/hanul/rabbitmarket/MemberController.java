@@ -44,9 +44,11 @@ public class MemberController {
 	final static String GOOGLE_TOKEN_BASE_URL = "https://oauth2.googleapis.com/token";
 	//final static String GOOGLE_REVOKE_TOKEN_BASE_URL = "https://oauth2.googleapis.com/revoke";
 
-
-	@Inject String clientId;
-	@Inject	String clientSecret;
+	  @Value("#{googleSns['api.client_id']}") 
+	  String clientId;
+	
+	  @Value("#{googleSns['api.client_secret']}")
+	  String clientSecret;
 
 	
 	

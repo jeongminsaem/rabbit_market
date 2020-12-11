@@ -1,6 +1,5 @@
 package market;
 
-import java.sql.Date;
 
 public class MarketVO {
 	   private int id, no, readcnt, commentcnt, price;
@@ -101,24 +100,20 @@ public class MarketVO {
 		this.discuss = discuss;
 	}
 
-	@Override
-
-	public String toString() {
-
-		return "MarketVO [id=" + id + ", filename=" + filename + "]";
-
-	}
+	
 	public int getLikecnt() {
 		return likecnt;
 	}
 	public void setLikecnt(int likecnt) {
 		this.likecnt = likecnt;
 	}
-
 	
-	   
-	   
-   
-   
-   
+
+	@Override
+
+	public String toString() {
+
+		return "MarketVO [id=" + id + ", filename=" + filename + "]";
+   }
+	
 }

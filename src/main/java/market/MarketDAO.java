@@ -67,6 +67,7 @@ public class MarketDAO implements MarketService {
 	@Override
 	public int market_insert_file(FileVO fileVo) {
 		// TODO Auto-generated method stub
+		System.out.println(fileVo);
 		return sql.insert("market.mapper.insert_file", fileVo);
 	}
 
@@ -82,9 +83,9 @@ public class MarketDAO implements MarketService {
 	}
 
 	@Override
-	public List<MarketVO> market_detail(int id) {
+	public MarketVO market_detail(int id) {
 		// TODO Auto-generated method stub
-		return sql.selectList("market.mapper.detail",id);
+		return sql.selectOne("market.mapper.detail",id);
 	}
 
 	@Override
@@ -140,6 +141,24 @@ public class MarketDAO implements MarketService {
 	public int del_noti(int id) {
 		// TODO Auto-generated method stub
 		return sql.update("market.mapper.del_noti",id);
+	}
+
+	@Override
+	public List<FileVO> detail_file(int id) {
+		// TODO Auto-generated method stub
+		return sql.selectList("market.mapper.detail_file", id);
+	}
+
+	@Override
+	public int delete_file(int id) {
+		// TODO Auto-generated method stub
+		return sql.delete("market.mapper.delete_file",id);
+	}
+
+	@Override
+	public int update_file(FileVO vo) {
+		// TODO Auto-generated method stub
+		return sql.update("market.mapper.update_file",vo);
 	}
 
 	

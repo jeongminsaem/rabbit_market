@@ -98,11 +98,11 @@ public class CommonService {
 		mail.setCharset("utf-8");
 		
 		//메일서버에 로그인하기
-		mail.setAuthentication("zxczxc924", "makoto929##");
+		mail.setAuthentication("", "");
 		mail.setSSLOnConnect(true);
 		
 		try {
-			mail.setFrom("zxczxc924@naver.com", "한울관리자"); //송신인
+			mail.setFrom("@naver.com", "한울관리자"); //송신인
 			mail.addTo(email, name); //수신인
 			
 			mail.setSubject("한울 IoT 가입");
@@ -151,11 +151,11 @@ public class CommonService {
 		mail.setCharset("utf-8");
 		
 		//메일서버에 로그인하기
-		mail.setAuthentication("zxczxc924", "makoto929##");
+		mail.setAuthentication("", "##");
 		mail.setSSLOnConnect(true);
 		
 		try {
-			mail.setFrom("zxczxc924@naver.com", "한울관리자"); //송신인
+			mail.setFrom("@naver.com", "한울관리자"); //송신인
 			mail.addTo(email, name); //수신인
 			
 			mail.setSubject("한울 IoT 가입");
@@ -185,11 +185,11 @@ public class CommonService {
 		mail.setCharset("utf-8");
 		
 		//메일서버에 로그인하기
-		mail.setAuthentication("zxczxc924", "makoto929##");
+		mail.setAuthentication("", "##");
 		mail.setSSLOnConnect(true);
 		
 		try {
-			mail.setFrom("zxczxc924@naver.com", "한울관리자"); //송신인
+			mail.setFrom("@naver.com", "한울관리자"); //송신인
 			mail.addTo(email, name); //수신인
 			
 			mail.setSubject("한울 IoT 가입");
