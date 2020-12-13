@@ -48,7 +48,7 @@ ul {list-style: none; padding:0;}
 		</select>		
 <!-- 글쓰기  -->	
 		<c:if test="${ !empty login_info }">
-			<a class="btn btn-secondary" style=" margin:0 20px 0 0; float: right; font-size: 1em;" href='new.mar'>글쓰기</a>
+			<a class="btn btn-secondary btn-sm" style=" margin:0 20px 0 0; float: right; font-size: 1em;" href='new.mar'>글쓰기</a>
 		</c:if>
 	</div>
 	
@@ -106,12 +106,15 @@ ul {list-style: none; padding:0;}
 		 <fmt:parseDate value="${vo.writedate}" var="endPlanDate" pattern="yyyy-MM-dd HH:mm:ss"/>  
 		<fmt:parseNumber value="${endPlanDate.time  / (1000 * 60 * 60 )}" integerOnly="true" var="endtime"></fmt:parseNumber>
  
-	 	<div style="float: left; height: 355px; " >
-	 	<!-- 썸네일  -->
-		  <div style="width: 210px; height: 140px;"><a onclick="go_detail(${vo.id})"><img src="resources/${vo.filepath}" style="width: 218px; height:150px; boarder: 1px solid gray"></a></div>		 	 
-	      <div class="card border-default mb-3" style="max-height:218px; width: 218px; user-select: auto; ">
-			  <!-- 제목부분  -->
-			  <h6 class="card-header" style= "display:inline-block;  font-family: 'JSDongkang-Regular'; width:218px; white-space: nowrap; overflow: hidden;  text-overflow: ellipsis;">	
+	 	<div style="float:left; height: 355px; margin:3px; " >
+<!-- 썸네일  -->
+		  <div style="width: 215px; height: 140px; border: 1px solid #E6E6E6;"><a onclick="go_detail(${vo.id})">
+		  		<c:if test="${vo.filepath eq null}"><img src="img/noimage.png" style="width: 213px; height:150px;"></c:if>
+		  		<img src="resources/${vo.filepath}" style="width: 213px; height:150px; ">
+		  </a></div>		 	 
+	      <div class="card border-default mb-3" style="max-height:218px; width: 215px; user-select: auto;">
+<!-- 제목부분  -->
+			  <h6 class="card-header" style= "display:inline-block;font-family:'JSDongkang-Regular'; width:218px; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">	
 				<a onclick="go_detail(${vo.id})"> ${vo.title}</a></h6>			
 			  <div class="card-body" style="font-size:0.9em; font-family: 'GyeonggiBatang';" >
 			  	<fmt:formatNumber var="price" value="${vo.price}" pattern="##,###,###" />		

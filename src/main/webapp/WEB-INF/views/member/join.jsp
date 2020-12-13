@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table td { text-align:left; padding: 20px}
+	table td { text-align:left; padding: 10px}
 	.valid, .invalid { font-size:13px; font-weight:bold; }
 	.valid { color:green }
 	.invalid { color:red }
-	table th {height: 14px;}
+	table th {height: 25px; text-align: right;}
 	/* input[name=address] { width:calc(100% - 14px); } */
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -19,38 +19,38 @@
 
 <div class="card border-primary mb-3" style="border: 3px solid #D8D8D8; padding: 100px;">
 	
-<p style="font-size:13px; padding-bottom:5px ">* 는 필수입력항목 입니다</p>
-<form action="join" method="post" style="padding: 20px;">
+<p style="font-size:13px; padding-bottom:5px">* 는 필수입력항목 입니다</p>
+<form action="join" method="post" style="padding: 10px;">
 	<table>
 		<tr><th>이름</th>
-			<td><input class="form-control" type="text" name="name"/></td>
+			<td><input class="form-control"  style="float:left; width:150px;" type="text" name="name"/></td>
 		</tr>
-		<tr><th style="padding-bottom: 50px;">* 아이디</th>
-			<td><input class="form-control"  style="float:left;" type="text" name="userid" class="chk" />			
-				<div class="valid">아이디를 입력하세요(영문소문자, 숫자만 입력 가능)</div>
-			<a class="btn btn-primary"  id="btn_id">중복확인</a>
+		<tr><th style="">* 아이디</th>
+			<td><input class="form-control"  style="float:left; width:150px;" type="text" name="userid" class="chk" />		
+				<a class="btn btn-primary" style="float:left; margin-left:10px;" id="btn_id">중복확인</a>
+				<div class="valid"  style="float:left; width:350px;">&nbsp;&nbsp;아이디를 입력하세요(영문소문자, 숫자만 입력 가능)</div>
 			</td>
 		</tr>
-		<tr><th style="padding-bottom: 30px;">* 비밀번호</th>
-			<td><input class="form-control" type="password" name="userpwd" class="chk" />
-				<div class="valid">비밀번호를 입력하세요(영문 대/소문자, 숫자를 모두 포함)</div>
+		<tr><th style="">* 비밀번호</th>
+			<td><input class="form-control" style="float:left; width:150px;" type="password" name="userpwd" class="chk" />
+				<div class="valid" style="float:left; width:350px;" > &nbsp;&nbsp; 비밀번호를 입력하세요(영문 대/소문자, 숫자를 모두 포함)</div>
 			</td>
 		</tr>
-		<tr><th style="padding-bottom: 30px;">* 비밀번호확인</th>
-			<td><input class="form-control" type="password" name="userpwd_ck" class="chk" />
-				<div class="valid">비밀번호를 다시 입력하세요</div>
+		<tr><th style="">* 비밀번호확인</th>
+			<td><input class="form-control"  style="float:left; width:150px;" type="password" name="userpwd_ck" class="chk" />
+				<div class="valid" style="float:left; width:350px;" > &nbsp;&nbsp;비밀번호를 다시 입력하세요</div>
 			</td>
 		</tr>
-		<tr><th style="padding-bottom: 30px;"> * 이메일</th>
-			<td><input class="form-control" type="text" name="email" class="chk" />
-				<div class="valid">이메일을 입력하세요</div>
+		<tr><th style=""> * 이메일</th>
+			<td><input class="form-control"  style="float:left; width:250px;" type="text" name="email" class="chk" />
+				<div class="valid" style="float:left; width:350px;" > &nbsp;&nbsp; 이메일을 입력하세요</div>
 			</td>
 		</tr>
-		<tr><th style="padding-bottom: 130px;">주소</th>
-			<td><a class="btn btn-primary" onclick="daum_post()">우편번호찾기</a>
-				<input class="form-control" type="text" name="post" class="w-px60" readonly />
-				<input class="form-control" type="text" name="address" readonly />
-				<input class="form-control" type="text" name="address" />
+		<tr><th style="">주소</th>
+			<td ><a class="btn btn-primary" onclick="daum_post()" style="width:130px; margin-left:10px;">우편번호찾기</a>
+				<input class="form-control" type="text" name="post" readonly style="width:150px; float:left;" />
+				<input class="form-control" type="text" name="address" readonly style="width:150px; float:left; margin-left:5px;"/>
+				<input class="form-control" type="text" name="address" style="width:350px; margin-top:5px; "/>
 			</td>
 		</tr>
 	</table>

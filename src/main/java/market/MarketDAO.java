@@ -152,6 +152,7 @@ public class MarketDAO implements MarketService {
 	@Override
 	public int delete_file(int id) {
 		// TODO Auto-generated method stub
+		System.out.println("DAO"+id);
 		return sql.delete("market.mapper.delete_file",id);
 	}
 

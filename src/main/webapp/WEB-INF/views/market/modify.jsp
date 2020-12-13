@@ -101,7 +101,8 @@
 			if(del_file != null){
 				$("[name=del_id]").val(del_file);
 			};
-			$('form').submit()
+			$('form').submit();
+			
 		};
 	}
 

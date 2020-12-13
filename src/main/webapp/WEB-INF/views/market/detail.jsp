@@ -72,6 +72,7 @@
   <!-- 내용  -->
 	
 	<div class="slide">
+	<c:if test="${fn:length(file_atta) eq 0}"><img src="img/noimage.png" alt="" width="700" height="500"></c:if>
 	<c:if test="${fn:length(file_atta) > 1}"><i class="fas fa-chevron-left"  style="font-size:70px; opacity: 0.3" id="back"></i></c:if>
       <ul>
         <c:forEach var="file" items="${file_atta}" begin="0" end="${fn:length(file_atta)}" step="1" varStatus="status">

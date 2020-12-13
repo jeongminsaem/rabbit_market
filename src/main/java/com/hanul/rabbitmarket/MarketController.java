@@ -1,4 +1,5 @@
 package com.hanul.rabbitmarket;
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -196,7 +197,6 @@ public class MarketController {
 		@RequestMapping("/insert.mar")
 		public String insert(MarketVO vo, FileVO fileVo, MultipartHttpServletRequest file, HttpSession session) {			
 	
-			List<MultipartFile> fileList = file.getFiles("file"); 
 		
 			vo.setUserid( ((MemberVO)session.getAttribute("login_info")).getUserid() );			
 			
@@ -207,7 +207,10 @@ public class MarketController {
 			
 			service.market_insert(vo);
 			  
+			List<MultipartFile> fileList = file.getFiles("file"); 
 			 for (MultipartFile SingleFile : fileList) {
+				 
+				 if(!SingleFile.isEmpty()) {
 		            String originFileName = SingleFile.getOriginalFilename(); // 원본 파일 명
 		            //long fileSize = SingleFile.getSize(); // 파일 사이즈
 
@@ -216,7 +219,7 @@ public class MarketController {
 		           fileVo.setFilepath(common.upload("market", SingleFile, session));                   
 		          // fileVo.setPostid(vo.getId());
 		           service.market_insert_file(fileVo);	           
-		           
+				 }  
 			 }	
 		
 			return "redirect:list.mar";			
@@ -235,7 +238,7 @@ public class MarketController {
 			// 상세내용 조회하기 
 					
 			model.addAttribute("vo",service.market_detail(id));	// 디테일 내용		
-			model.addAttribute("crlf","\r\n");
+			model.addAttribute("crlf","\r\n");			
 			model.addAttribute("file_atta", service.detail_file(id));	 //내용을 포함한 파일 리스트 		
 			model.addAttribute("page",page);
 			
@@ -272,41 +275,45 @@ public class MarketController {
 		@RequestMapping("/update.mar")
 		public String update(MarketVO vo, MultipartHttpServletRequest file, FileVO fileVo, HttpSession session, 
 							RedirectAttributes redirect, Model model, String del_id) {
+		
 			
-		service.market_update(vo); // 내용 업데이트 
-		System.out.println("컨트롤러");
-		//System.out.println("삭제할 아이디"+del_id);
-		
-		if( !del_id.isEmpty() ) {
-			System.out.println("지울 사진 있음");
-			String[] split_id = del_id.split(",");
-			for(String delete : split_id) {
-				System.out.println(delete);
-				int id = Integer.parseInt(delete);
-				service.delete_file(id);
-				//파일 지우기 
+			List<MultipartFile> newFile = file.getFiles("file");
+			for (MultipartFile SingleFile : newFile) {
+				
+				 System.out.println("오리지날파일"+SingleFile.getOriginalFilename());  
+				 String file_name = SingleFile.getOriginalFilename();
+				
+				//새 파일은 등록. 
+				if( !file_name.isEmpty() ) {
+					 //새파일 받아오기  
+						System.out.println("=====================새파일 있음");						
+				       //String originFileName = SingleFile.getOriginalFilename(); // 원본 파일 명			    	  
+			    	   fileVo.setFilename(SingleFile.getOriginalFilename());
+			           fileVo.setFilepath(common.upload("market", SingleFile, session));           
+			           fileVo.setPostid(vo.getId());
+			           service.update_file(fileVo);
+					
+					
+					
+				}		
+			}				
+		// 파일 지우기 
+			if( !del_id.isEmpty() ) { //지워야할 번호가 들어오면 
+				System.out.println("==================지울 사진 있음");
+				String[] split_id = del_id.split(",");
+				
+				for(String delete : split_id) { 				
+					
+					int file_id = Integer.parseInt(delete); // 파일id 
+					service.delete_file(file_id);	
+											
+				}
+				
 			}
-		}
 		
-		List<MultipartFile> fileList = file.getFiles("file"); //새파일 받아오기  
-		
-		if( fileList != null) {
-			//새 파일은 등록. 		
-			System.out.println("새파일 있음");
-			for (MultipartFile SingleFile : fileList) {
-	           //String originFileName = SingleFile.getOriginalFilename(); // 원본 파일 명
-	    	           
-	           fileVo.setFilename(SingleFile.getOriginalFilename());
-	           fileVo.setFilepath(common.upload("market", SingleFile, session));           
-	           fileVo.setPostid(vo.getId());
-	           service.update_file(fileVo);
-			}
-		}		
-		
-		
-		
-		
-		
+			
+			// 내용 업데이트 
+		 service.market_update(vo); 	
 		 return "redirect:detail.mar?id="+vo.getId();		
 		
 		}
@@ -317,16 +324,14 @@ public class MarketController {
 
 		//방명록 삭제요청
 		@RequestMapping("/delete.mar")
-		public String delete(int id, HttpSession session, Model model){
+		public String delete(int id, HttpSession session, Model model, MarketVO vo){
 			
-			
-		//첨부파일이 있는 경우 서버의 물리적영역에서 파일을 삭제 
-		//List<MarketVO> vo = service.market_detail(id);
-			/*
-			 * if( vo.getFilename() != null) { File f = new File(
-			 * session.getServletContext().getRealPath("resources") + vo.getFilepath() ); if
-			 * ( f.exists() ) f.delete(); }
-			 */
+			//첨부파일이 있는 경우 서버의 물리적영역에서 파일을 삭제 		
+			if( vo.getFilename() != null) { 
+		File f = new File(session.getServletContext().getRealPath("resources") + vo.getFilepath()); 
+		System.out.println(vo.getFilepath());
+		if( f.exists() ) f.delete(); 
+			}
 				
 		//선택한 방명록 글을 DB에서 삭제한 후 목록화면으로 연결
 			service.market_delete(id);
